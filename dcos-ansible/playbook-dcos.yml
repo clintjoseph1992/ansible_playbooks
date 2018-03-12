@@ -1,0 +1,38 @@
+- hosts: dcos-cluster,dcos-bootstrap
+  become: yes
+  roles:
+    - ansible-dcos-common
+  tags:
+    - common
+    - ansible-dcos-common
+
+- hosts: dcos-bootstrap
+  roles:
+    - ansible-dcos-bootstrap-node
+  tags:
+    - bootstrap
+    - ansible-dcos-bootstrap-node
+
+- hosts: mesos-master
+  become: yes
+  roles:
+    - ansible-dcos-bootstrap-master
+  tags:
+    - bootstrap
+    - ansible-dcos-bootstrap-master
+
+- hosts: mesos-agent
+  become: yes
+  roles:
+    - ansible-dcos-bootstrap-agent
+  tags:
+    - bootstrap
+    - ansible-dcos-bootstrap-agent
+
+- hosts: mesos-agent-public
+  become: yes
+  roles:
+    - ansible-dcos-bootstrap-agent-public
+  tags:
+    - bootstrap
+    - ansible-dcos-bootstrap-agent-public

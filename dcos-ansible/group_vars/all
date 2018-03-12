@@ -1,0 +1,14 @@
+dcos_bootstrap_url: "{{ bootstrap_internal_url }}"
+bootstrap_internal_url: http://{{ hostvars['bootstrap1']['ansible_eth0']['ipv4']['address'] }}:{{ dcos_bootstrap_port }}
+bootstrap_external_url: http://<master_ip>:{{ dcos_bootstrap_port }}
+dcos_bootstrap_port: 9000
+dcos_iface: eth0
+dcos_bootstrap_dir : '{{ansible_env.HOME}}/dcos-bootstrap'
+dcos_bootstrap_generate_config_url: https://downloads.dcos.io/dcos/stable
+dcos_bootstrap_generate_config: dcos_generate_config.sh
+dcos_cluster_name: 'dcos-iot'
+dcos_exhibitor_storage_backend: static
+dcos_bootstrap_iface: eth0
+dcos_resolvers_0: '8.8.8.4'
+dcos_resolvers_1: '8.8.8.8'
+upgrade_limiter: /opt/package_upgraded

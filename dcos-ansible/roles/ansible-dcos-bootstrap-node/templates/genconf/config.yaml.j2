@@ -1,0 +1,22 @@
+---
+agent_list:
+{% for host in groups['mesos-agent'] %}
+- {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}
+{% endfor %}
+# Use this bootstrap_url value unless you have moved the DC/OS installer assets.
+bootstrap_url: {{ dcos_bootstrap_url }}
+cluster_name: {{ dcos_cluster_name }}
+exhibitor_storage_backend: {{ dcos_exhibitor_storage_backend }}
+master_discovery: static
+ip_detect_public_filename: genconf/ip-detect-public
+master_list:
+{% for host in groups['mesos-master'] %}
+- {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}
+{% endfor %}
+public_agent_list:
+{% for host in groups['mesos-agent-public'] %}
+- {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}
+{% endfor %}
+resolvers:
+- {{ dcos_resolvers_0 }}
+- {{ dcos_resolvers_1 }}
